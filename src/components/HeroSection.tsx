@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import * as THREE from 'three';
+import ComputersCanvas from './canvas/Computer';
 
 const HeroSection = () => {
   const avatarContainerRef = useRef<HTMLDivElement>(null);
@@ -94,95 +95,43 @@ const HeroSection = () => {
   
   return (
     <section id="home" className="min-h-screen flex flex-col items-center justify-center relative py-20">
-      <div className="container mx-auto px-4 z-10">
-        <motion.div
-          className="text-center mb-6"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h1 className="text-5xl md:text-7xl font-bold mb-4 neon-purple-text">
-            <TypeAnimation
-              sequence={[
-                'Developer.',
-                2000,
-                'Creator.',
-                2000,
-                'Innovator.',
-                2000,
-              ]}
-              wrapper="span"
-              speed={50}
-              repeat={Infinity}
-            />
-          </h1>
-          
-          <motion.p 
-            className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 1 }}
-          >
-            Crafting digital experiences from code to creation
-          </motion.p>
-        </motion.div>
-        
-        <motion.div 
-          className="mt-16 relative w-64 h-64 mx-auto"
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.5 }}
-        >
-          <div 
-            ref={avatarContainerRef} 
-            className="absolute inset-0 z-0"
-          ></div>
-          
-          <div className="relative z-10 w-48 h-48 mx-auto rounded-full overflow-hidden border-2 border-future-neon animate-float">
-            <div className="w-full h-full bg-gradient-to-br from-future-purple to-future-blue rounded-full flex items-center justify-center">
-              {/* Placeholder for avatar - replace with your image */}
-              <span className="text-5xl">DEV</span>
-            </div>
-          </div>
-        </motion.div>
-        
-        <motion.div
-          className="mt-16"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 1 }}
-        >
-          <motion.a
-            href="#about"
-            className="inline-block px-8 py-4 rounded-full bg-gradient-to-r from-future-purple to-future-blue text-white font-bold text-lg hover:from-future-neon hover:to-future-purple transition-all duration-300 shadow-lg shadow-future-purple/20"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={(e) => {
-              e.preventDefault();
-              document.getElementById('about')?.scrollIntoView({
-                behavior: 'smooth'
-              });
-            }}
-          >
-            Explore My Universe
-          </motion.a>
-        </motion.div>
-      </div>
-      
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 rounded-full border-2 border-white flex justify-center pt-1">
-          <motion.div 
-            className="w-1 h-2 bg-white rounded-full"
-            animate={{ 
-              y: [0, 8, 0],
-            }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
+      <div
+        className="absolute inset-0 top-[120px]  max-w-7xl mx-auto sm:px-16 px-6 flex flex-row items-start gap-5"
+      >
+        <div className='flex flex-col justify-center items-center mt-5'>
+          <div className='w-5 h-5 rounded-full bg-[#915EFF]' />
+          <div className='w-1 sm:h-80 h-40 violet-gradient' />
         </div>
+
+        <div>
+          <h1 className="font-black lg:text-[80px] sm:text-[60px] xs:text-[50px] text-[40px] lg:leading-[98px] mt-2 text-white">
+            Hi, I'm <span className='text-[#915EFF]'>Matheus</span>
+          </h1>
+          <p className="sm:text-[18px] text-[14px] uppercase tracking-wider mt-2 text-gray-300">
+            I Develop Attractive, user <br className='sm:block hidden' />
+            interfaces and web applications
+          </p>
+        </div>
+      </div>
+
+      <ComputersCanvas />
+
+      <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center'>
+        <a href='#about'>
+          <div className='w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2'>
+            <motion.div
+              animate={{
+                y: [0, 24, 0],
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                repeatType: "loop",
+              }}
+              className='w-3 h-3 rounded-full bg-secondary mb-1'
+            />
+          </div>
+        </a>
       </div>
     </section>
   );
