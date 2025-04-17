@@ -1,92 +1,101 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { Loader2, Menu, X } from "lucide-react";
 
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Link, useLocation } from 'react-router-dom';
+const Navbar = () => {
+  const [active, setActive] = useState("");
+  const [toggle, setToggle] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-const FuturisticNav = () => {
-  const [activeSection, setActiveSection] = useState('home');
-  const location = useLocation();
-  
   useEffect(() => {
-    // Handle nav highlighting based on scroll or URL
     const handleScroll = () => {
-      const sections = document.querySelectorAll('section[id]');
-      let current = '';
-      
-      sections.forEach((section) => {
-        const sectionTop = (section as HTMLElement).offsetTop;
-        const sectionHeight = (section as HTMLElement).clientHeight;
-        
-        if (window.scrollY >= sectionTop - 200 && 
-            window.scrollY < sectionTop + sectionHeight - 200) {
-          current = section.getAttribute('id') || '';
-        }
-      });
-      
-      if (current && current !== activeSection) {
-        setActiveSection(current);
-      }
+      setScrolled(window.scrollY > 100);
     };
-    
-    window.addEventListener('scroll', handleScroll);
-    
-    // Set based on URL if that's how we're navigating
-    if (location.hash) {
-      setActiveSection(location.hash.substring(1));
-    }
-    
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [location, activeSection]);
-  
-  const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'timeline', label: 'Timeline' },
-    { id: 'certifications', label: 'Certifications' },
-    { id: 'contact', label: 'Contact' }
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const navLinks = [
+    { id: "about", title: "About" },
+    { id: "work", title: "Work" },
+    { id: "contact", title: "Contact" },
   ];
-  
+
   return (
-    <motion.nav 
-      className="fixed top-8 left-1/2 transform -translate-x-1/2 z-50 px-2 py-1 glassmorphism rounded-full"
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, delay: 1 }}
+    <nav
+      className={`sm:px-16 px-6 w-full flex items-center py-5 fixed top-0 z-20 transition-colors duration-300 ${
+        scrolled ? "bg-slate-900/80" : "bg-transparent"
+      }`}
     >
-      <ul className="flex items-center space-x-2">
-        {navItems.map((item) => (
-          <li key={item.id} className="relative">
-            <Link
-              to={`#${item.id}`}
-              className={`relative px-4 py-2 rounded-full text-sm transition-all duration-300 block ${
-                activeSection === item.id
-                  ? 'text-white'
-                  : 'text-gray-400 hover:text-white'
-              }`}
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById(item.id)?.scrollIntoView({
-                  behavior: 'smooth'
-                });
-                setActiveSection(item.id);
-              }}
+      <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
+        <Link
+          to="/"
+          className="flex items-center gap-2"
+          onClick={() => {
+            setActive("");
+            window.scrollTo(0, 0);
+          }}
+        >
+          <Loader2 className="w-6 h-6 text-white" />
+          <p className="text-white text-[18px] font-bold cursor-pointer flex gap-2">
+            Matheus
+            <span className="sm:block hidden"> | Full Stack Developer</span>
+          </p>
+        </Link>
+
+        <ul className="list-none hidden sm:flex flex-row gap-10">
+          {navLinks.map((nav) => (
+            <li
+              key={nav.id}
+              className={`${
+                active === nav.title ? "text-white" : "text-white/80"
+              } hover:text-white text-[18px] font-medium cursor-pointer`}
+              onClick={() => setActive(nav.title)}
             >
-              {activeSection === item.id && (
-                <motion.span
-                  className="absolute inset-0 rounded-full bg-gradient-to-r from-future-neon to-future-purple-light -z-10"
-                  layoutId="navBackground"
-                  transition={{ type: 'spring', duration: 0.6 }}
-                />
-              )}
-              {item.label}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </motion.nav>
+              <a href={`#${nav.id}`}>{nav.title}</a>
+            </li>
+          ))}
+        </ul>
+
+        <div className="sm:hidden flex justify-end items-center">
+          {toggle ? (
+            <X
+              className="w-7 h-7 text-white cursor-pointer"
+              onClick={() => setToggle(false)}
+            />
+          ) : (
+            <Menu
+              className="w-7 h-7 text-white cursor-pointer"
+              onClick={() => setToggle(true)}
+            />
+          )}
+
+          <div
+            className={`${
+              toggle ? "flex" : "hidden"
+            } p-6 black-gradient absolute top-20 right-4 min-w-[140px] z-10 rounded-xl`}
+          >
+            <ul className="list-none flex flex-col gap-4">
+              {navLinks.map((nav) => (
+                <li
+                  key={nav.id}
+                  className={`font-medium text-xl cursor-pointer underline-hover ${
+                    active === nav.title ? "text-white" : "text-secondary"
+                  }`}
+                  onClick={() => {
+                    setToggle(false);
+                    setActive(nav.title);
+                  }}
+                >
+                  <a href={`#${nav.id}`}>{nav.title}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
   );
 };
 
-export default FuturisticNav;
+export default Navbar;

@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 
@@ -8,32 +8,24 @@ const Computers = ({ isMobile }) => {
   const computer = useGLTF("./desktop_pc/scene.gltf");
 
   return (
-    <group>
-      <ambientLight intensity={0.7} />
-
-      <directionalLight
-        position={[10, 10, 5]}
-        intensity={1.3}
-        castShadow
-        shadow-mapSize-width={1024}
-        shadow-mapSize-height={1024}
-      />
-
+    <mesh>
+      <hemisphereLight intensity={5} groundColor="black" />
       <spotLight
-        position={[5, 20, 10]}
-        angle={0.3}
+        position={[-20, 50, 10]}
+        angle={0.12}
         penumbra={1}
         intensity={1}
         castShadow
+        shadow-mapSize={1024}
       />
-
+      <pointLight intensity={1} />
       <primitive
         object={computer.scene}
-        scale={isMobile ? 0.7 : 1.7}
-        position={isMobile ? [0, -2.7, -1.8] : [0, -6, -1.5]}
+        scale={isMobile ? 0.7 : 0.75}
+        position={isMobile ? [0, -3, -2.2] : [0, -3.4, -1.5]}
         rotation={[-0.01, -0.2, -0.1]}
       />
-    </group>
+    </mesh>
   );
 };
 
@@ -42,6 +34,7 @@ const ComputersCanvas = () => {
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 500px)");
+
     setIsMobile(mediaQuery.matches);
 
     const handleMediaQueryChange = (event) => {
@@ -49,6 +42,7 @@ const ComputersCanvas = () => {
     };
 
     mediaQuery.addEventListener("change", handleMediaQueryChange);
+
     return () => {
       mediaQuery.removeEventListener("change", handleMediaQueryChange);
     };
@@ -59,7 +53,7 @@ const ComputersCanvas = () => {
       frameloop="demand"
       shadows
       dpr={[1, 2]}
-      camera={{ position: [5, 2, 8], fov: 35 }}
+      camera={{ position: [20, 3, 5], fov: 25 }}
       gl={{ preserveDrawingBuffer: true }}
     >
       <Suspense fallback={<CanvasLoader />}>
