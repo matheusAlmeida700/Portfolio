@@ -1,183 +1,191 @@
+import { useState, useEffect } from "react";
+import { Calendar, Briefcase, GraduationCap, Award } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+type TimelineItem = {
+  id: number;
+  date: string;
+  title: string;
+  description: string;
+  type: "work" | "education" | "achievement";
+};
 
-// Sample timeline data - replace with your own milestones
-const timelineData = [
+const timelineItems: TimelineItem[] = [
   {
-    year: "2011",
-    age: 12,
-    title: "First Line of Code",
-    description: "Wrote my first 'Hello World' program in HTML and was instantly fascinated by seeing my code come to life in the browser."
+    id: 1,
+    date: "2023 - Presente",
+    title: "Desenvolvedor Full Stack Sênior",
+    description:
+      "Liderando o desenvolvimento de aplicações web e mobile, trabalhando com React, Node.js e AWS. Implantação de boas práticas e mentoria de desenvolvedores juniores.",
+    type: "work",
   },
   {
-    year: "2013",
-    age: 14,
-    title: "First Game Development",
-    description: "Created a simple arcade game with JavaScript, learning the fundamentals of game logic, collision detection, and animation."
+    id: 2,
+    date: "2020 - 2023",
+    title: "Desenvolvedor Full Stack",
+    description:
+      "Desenvolvimento de aplicações web responsivas e escaláveis utilizando React, TypeScript e Node.js. Integração com APIs de terceiros e implementação de fluxos de CI/CD.",
+    type: "work",
   },
   {
-    year: "2015",
-    age: 16,
-    title: "Mobile App Development",
-    description: "Developed my first mobile app, an educational tool that helped high school students with science concepts."
+    id: 3,
+    date: "2022",
+    title: "Especialização em Arquitetura de Software",
+    description:
+      "Curso de especialização focado em padrões de projeto, microserviços e sistemas distribuídos.",
+    type: "education",
   },
   {
-    year: "2017",
-    age: 18,
-    title: "University & First Internship",
-    description: "Started studying Computer Science and secured my first internship at a local tech startup working on web applications."
+    id: 4,
+    date: "2018 - 2020",
+    title: "Desenvolvedor Front-end",
+    description:
+      "Criação de interfaces de usuário responsivas e componentes reutilizáveis usando React, Redux e styled-components.",
+    type: "work",
   },
   {
-    year: "2019",
-    age: 20,
-    title: "Open Source Contributions",
-    description: "Started contributing to open source projects, collaborating with developers worldwide and improving my coding skills."
+    id: 5,
+    date: "2018",
+    title: "Bacharelado em Ciência da Computação",
+    description:
+      "Graduação com foco em desenvolvimento de software, algoritmos e estruturas de dados.",
+    type: "education",
   },
   {
-    year: "2021",
-    age: 22,
-    title: "Professional Developer",
-    description: "Joined a tech company as a full-stack developer, working on enterprise applications serving thousands of users."
+    id: 6,
+    date: "2017",
+    title: "Prêmio de Inovação Tecnológica",
+    description:
+      "Reconhecimento por projeto de aplicativo de acessibilidade desenvolvido durante hackathon universitário.",
+    type: "achievement",
   },
-  {
-    year: "Present",
-    age: "Now",
-    title: "Independent Developer",
-    description: "Working as an independent developer, building cutting-edge solutions and continuously exploring new technologies."
-  }
 ];
 
-const TimelineSection = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  });
-  
-  // Create a progress line that fills as the user scrolls through this section
-  const scaleX = useTransform(scrollYProgress, [0, 1], [0.01, 1]);
-  
+function getIcon(type: TimelineItem["type"]) {
+  switch (type) {
+    case "work":
+      return <Briefcase className="h-5 w-5" />;
+    case "education":
+      return <GraduationCap className="h-5 w-5" />;
+    case "achievement":
+      return <Award className="h-5 w-5" />;
+    default:
+      return <Calendar className="h-5 w-5" />;
+  }
+}
+
+const getIconClass = (type: TimelineItem["type"]) => {
+  switch (type) {
+    case "work":
+      return "bg-blue-500/20 text-blue-500 border-blue-500/50";
+    case "education":
+      return "bg-purple-500/20 text-purple-500 border-purple-500/50";
+    case "achievement":
+      return "bg-yellow-500/20 text-yellow-500 border-yellow-500/50";
+    default:
+      return "bg-primary/20 text-primary border-primary/50";
+  }
+};
+
+export default function Timeline() {
+  const [visibleItems, setVisibleItems] = useState<number[]>([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = parseInt(entry.target.id.split("-")[1]);
+            setVisibleItems((prev) =>
+              prev.includes(id) ? prev : [...prev, id]
+            );
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    const timelineElements = document.querySelectorAll(".timeline-item");
+    timelineElements.forEach((el) => observer.observe(el));
+
+    return () => {
+      timelineElements.forEach((el) => observer.unobserve(el));
+    };
+  }, []);
+
   return (
-    <section 
-      id="timeline" 
-      ref={sectionRef}
-      className="min-h-screen py-20 relative"
-    >
-      <div className="container mx-auto px-4 z-10 relative">
-        <motion.h2 
-          className="text-4xl md:text-5xl font-bold mb-16 text-center"
+    <section id="timeline" className="py-20 md:py-32 bg-secondary/20">
+      <div className="container mx-auto px-4">
+        <motion.h2
+          className="text-4xl md:text-4xl font-bold mb-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          My <span className="neon-text">Journey</span>
+          <span className="neon-text">About</span> Me
         </motion.h2>
-        
+
         <div className="relative">
-          {/* Vertical timeline line with progress animation */}
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gray-800/50" />
-          
-          <motion.div 
-            className="absolute left-1/2 -translate-x-1/2 top-0 w-0.5 bg-gradient-to-b from-future-neon to-future-purple origin-top"
-            style={{ scaleY: scaleX, height: '100%' }}
-          />
-          
-          <div className="relative">
-            {timelineData.map((item, index) => (
-              <TimelineItem 
-                key={index} 
-                item={item} 
-                index={index} 
-                isLast={index === timelineData.length - 1}
-              />
+          <div className="absolute left-[20px] md:left-1/2 transform md:-translate-x-1/2 h-full w-0.5 bg-timeline"></div>
+
+          <div className="space-y-16">
+            {timelineItems.map((item, index) => (
+              <div
+                id={`item-${item.id}`}
+                key={item.id}
+                className={cn(
+                  "timeline-item relative flex items-start gap-8",
+                  visibleItems.includes(item.id) ? "opacity-100" : "opacity-0"
+                )}
+                style={{
+                  transition: "all 0.7s ease-out",
+                  transitionDelay: `${
+                    visibleItems.includes(item.id) ? item.id * 0.2 : 0
+                  }s`,
+                }}
+              >
+                <div className="absolute left-0 md:left-1/2 z-10 transform -translate-y-1/2 md:-translate-x-1/2">
+                  <div
+                    className={cn(
+                      "w-10 h-10 rounded-full flex items-center justify-center border-2",
+                      getIconClass(item.type),
+                      "timeline-animation-icon"
+                    )}
+                  >
+                    {getIcon(item.type)}
+                  </div>
+                </div>
+
+                <div
+                  className={cn(
+                    "ml-16 md:ml-0 w-full md:w-1/2",
+                    index % 2 === 0
+                      ? "md:pr-16 md:text-right"
+                      : "md:pl-16 md:ml-auto"
+                  )}
+                >
+                  <div
+                    className={cn(
+                      "glassmorphism p-6 rounded-lg transform",
+                      index % 2 === 0
+                        ? "timeline-animation-left"
+                        : "timeline-animation-right"
+                    )}
+                  >
+                    <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                    <p className="text-muted-foreground">{item.description}</p>
+                    <span className="inline-block mt-3 bg-purple-500/10 text-primary px-4 py-1 rounded-full text-sm font-medium">
+                      {item.date}
+                    </span>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </div>
-      
-      {/* Nebula-like animated background */}
-      <div className="absolute inset-0 overflow-hidden z-0 opacity-20">
-        {[...Array(15)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full blur-3xl"
-            style={{
-              background: `radial-gradient(circle, ${
-                i % 2 === 0 ? '#9b87f5' : '#36F4EB'
-              } 0%, rgba(0,0,0,0) 70%)`,
-              width: `${200 + i * 20}px`,
-              height: `${200 + i * 20}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              x: [0, Math.random() * 100 - 50, 0],
-              y: [0, Math.random() * 100 - 50, 0],
-              opacity: [0.2, 0.3, 0.2],
-            }}
-            transition={{
-              duration: 20 + i,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-        ))}
-      </div>
     </section>
   );
-};
-
-interface TimelineItemProps {
-  item: {
-    year: string;
-    age: number | string;
-    title: string;
-    description: string;
-  };
-  index: number;
-  isLast: boolean;
 }
-
-const TimelineItem = ({ item, index, isLast }: TimelineItemProps) => {
-  const isEven = index % 2 === 0;
-  
-  return (
-    <motion.div 
-      className={`mb-16 flex items-center ${isLast ? 'mb-0' : ''}`}
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-    >
-      {/* Content */}
-      <div className={`w-1/2 pr-12 ${!isEven && 'order-2 pl-12 pr-0 text-right'}`}>
-        <div className={`glassmorphism rounded-xl p-6 ${isEven ? 'mr-8' : 'ml-8'}`}>
-          <h3 className="text-lg font-bold mb-1 neon-purple-text">{item.title}</h3>
-          <p className="text-sm text-gray-300 mb-4">{item.description}</p>
-        </div>
-      </div>
-      
-      {/* Timeline marker */}
-      <motion.div 
-        className="absolute left-1/2 transform -translate-x-1/2 flex flex-col items-center"
-        whileHover={{ scale: 1.1 }}
-      >
-        <div className="flex flex-col items-center justify-center mb-2">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-r from-future-neon to-future-purple flex items-center justify-center relative">
-            <div className="absolute inset-0 rounded-full animate-pulse-slow bg-future-neon/20 blur-sm"></div>
-            <span className="text-xs font-bold">{item.age}</span>
-          </div>
-          <div className="mt-2 text-sm font-medium text-future-neon">{item.year}</div>
-        </div>
-      </motion.div>
-      
-      {/* Empty div for layout */}
-      <div className={`w-1/2 ${isEven && 'order-2'}`}></div>
-    </motion.div>
-  );
-};
-
-export default TimelineSection;

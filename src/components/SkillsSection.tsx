@@ -1,8 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import SkillSphere from "./canvas/SkillSphere";
-// import { SectionWrapper } from "../hoc";
-import { technologies } from "../constants";
+import { technologies } from "../constants/index";
 
 const skillsData = [
   {
@@ -10,14 +8,35 @@ const skillsData = [
     level: 95,
     category: "frontend",
     color: "#F7DF1E",
-    icon: "⚡",
+    icon: "🟨",
+  },
+  {
+    name: "HTML",
+    level: 95,
+    category: "frontend",
+    color: "#E34F26",
+    icon: "📄",
+  },
+  {
+    name: "CSS",
+    level: 95,
+    category: "frontend",
+    color: "#1572B6",
+    icon: "🎨",
+  },
+  {
+    name: "TailwindCSS",
+    level: 95,
+    category: "frontend",
+    color: "#06B6D4",
+    icon: "🌬️",
   },
   {
     name: "TypeScript",
     level: 90,
     category: "frontend",
     color: "#3178C6",
-    icon: "🛡️",
+    icon: "🌀",
   },
   {
     name: "React",
@@ -31,12 +50,12 @@ const skillsData = [
     level: 88,
     category: "backend",
     color: "#339933",
-    icon: "🚀",
+    icon: "🌱",
   },
   {
     name: "Python",
     level: 85,
-    category: "backend",
+    category: "other",
     color: "#3776AB",
     icon: "🐍",
   },
@@ -45,28 +64,35 @@ const skillsData = [
     level: 80,
     category: "database",
     color: "#4479A1",
-    icon: "🗄️",
+    icon: "🐬",
   },
   {
-    name: "NoSQL",
+    name: "MongoDB",
     level: 82,
     category: "database",
-    color: "#4DB33D",
-    icon: "📊",
+    color: "#47A248",
+    icon: "🍃",
   },
   {
     name: "Express.js",
     level: 85,
     category: "backend",
     color: "#000000",
-    icon: "🔌",
+    icon: "🚇",
   },
   {
     name: "Spring Boot",
     level: 78,
     category: "backend",
     color: "#6DB33F",
-    icon: "🍃",
+    icon: "🌼",
+  },
+  {
+    name: "Git",
+    level: 85,
+    category: "other",
+    color: "#F05032",
+    icon: "🔧",
   },
   {
     name: "Unity",
@@ -113,7 +139,7 @@ const SkillsSection = () => {
         </motion.h2>
 
         <div className="flex justify-center mb-12 flex-wrap gap-2">
-          {categories.map((category, index) => (
+          {categories.map((category) => (
             <button
               key={category}
               className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
@@ -140,6 +166,7 @@ const SkillsSection = () => {
         </div>
       </div>
 
+      {/* Background bubbles */}
       <div className="absolute inset-0 overflow-hidden z-0">
         {[...Array(5)].map((_, i) => (
           <motion.div
@@ -181,7 +208,6 @@ interface Skill {
 
 const SkillCard = ({
   skill,
-  index,
   isInView,
 }: {
   skill: Skill;
@@ -196,27 +222,35 @@ const SkillCard = ({
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: 0.1 * index }}
+      transition={{ duration: 0.2 }}
       whileHover={{
         scale: 1.05,
         boxShadow: `0 0 20px 2px ${skill.color}55`,
       }}
     >
       <div className="flex justify-center flex-col items-center">
-        <div>
-          <h3 className="text-xl font-bold mb-1 flex items-center gap-2">
-            <span>{skill.icon}</span>
-            {skill.name}
-          </h3>
-        </div>
-        <div className="w-24 h-24">
-          {tech && isInView ? (
-            <SkillSphere icon={tech.icon} />
-          ) : (
-            <div className="w-full h-full rounded-full flex items-center justify-center bg-gradient-to-br from-future-dark to-future-blue-dark">
-              <span className="text-lg">{skill.category}</span>
-            </div>
-          )}
+        <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
+          <span>{skill.icon}</span>
+          {skill.name}
+        </h3>
+        <div
+          className="w-24 h-24 rounded-full p-[3px]"
+          style={{
+            background: `radial-gradient(circle, ${skill.color}55, transparent)`,
+            boxShadow: `0 0 12px ${skill.color}88`,
+          }}
+        >
+          <div className="w-full h-full rounded-full overflow-hidden bg-white shadow-inner flex items-center justify-center">
+            {tech?.icon ? (
+              <img
+                src={tech.icon}
+                alt={skill.name}
+                className="w-5/6 h-5/6 object-contain"
+              />
+            ) : (
+              <span className="text-lg text-black">{skill.category}</span>
+            )}
+          </div>
         </div>
       </div>
 

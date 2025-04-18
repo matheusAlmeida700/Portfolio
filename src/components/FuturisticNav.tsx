@@ -37,9 +37,12 @@ const Navbar = () => {
           }}
         >
           <Loader2 className="w-6 h-6 text-white" />
-          <p className="text-white text-[18px] font-bold cursor-pointer flex gap-2">
-            Matheus
-            <span className="sm:block hidden"> | Full Stack Developer</span>
+          <p className="text-white text-[18px] font-bold cursor-pointer flex gap-1">
+            {"<"}Matheus
+            <span className="sm:block hidden">
+              {" "}
+              | Full Stack Developer {"/>"}
+            </span>
           </p>
         </Link>
 
