@@ -19,8 +19,9 @@ const HeroSection = () => {
             Olá, Eu sou o <span className="text-[#915EFF]">Matheus</span>
           </h1>
           <p className="text-[#dfd9ff] font-medium lg:text-[25px] sm:text-[26px] xs:text-[20px] text-[16px] lg:leading-[40px] text-white-100">
-            I Develop Attractive, user <br className="sm:block hidden" />
-            interfaces and web applications
+            Desenvolvo aplicaçãoes full-stack com foco em{" "}
+            <br className="sm:block hidden" />
+            qualidade e usabilidade.
           </p>
         </div>
       </div>

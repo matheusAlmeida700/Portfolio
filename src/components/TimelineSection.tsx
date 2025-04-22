@@ -14,24 +14,24 @@ type TimelineItem = {
 const timelineItems: TimelineItem[] = [
   {
     id: 1,
-    date: "2023 - Presente",
-    title: "Desenvolvedor Full Stack Sênior",
+    date: "2020",
+    title: "Início na Programação",
     description:
-      "Liderando o desenvolvimento de aplicações web e mobile, trabalhando com React, Node.js e AWS. Implantação de boas práticas e mentoria de desenvolvedores juniores.",
+      "Primeiro contato com programação por meio do Python. Criei scripts para automatizar tarefas no computador, como envio de e-mails e formulários",
     type: "work",
   },
   {
     id: 2,
-    date: "2020 - 2023",
-    title: "Desenvolvedor Full Stack",
+    date: "2021 - 2022",
+    title: "Desenvolvedor Python e Unity",
     description:
-      "Desenvolvimento de aplicações web responsivas e escaláveis utilizando React, TypeScript e Node.js. Integração com APIs de terceiros e implementação de fluxos de CI/CD.",
+      "Desenvolvi jogos em C# utilizando a engine Unity, além de scripts para análise de dados e automação com Python",
     type: "work",
   },
   {
     id: 3,
-    date: "2022",
-    title: "Especialização em Arquitetura de Software",
+    date: "2023",
+    title: "Desenvolvedor Front-end",
     description:
       "Curso de especialização focado em padrões de projeto, microserviços e sistemas distribuídos.",
     type: "education",
@@ -41,7 +41,7 @@ const timelineItems: TimelineItem[] = [
     date: "2018 - 2020",
     title: "Desenvolvedor Front-end",
     description:
-      "Criação de interfaces de usuário responsivas e componentes reutilizáveis usando React, Redux e styled-components.",
+      "Desenvolvimento de aplicações web responsivas e escaláveis utilizando React, TypeScript e Node.js. Integração com APIs de terceiros e implementação de fluxos de CI/CD.",
     type: "work",
   },
   {
@@ -118,13 +118,13 @@ export default function Timeline() {
     <section id="timeline" className="py-20 md:py-32 bg-secondary/20">
       <div className="container mx-auto px-4">
         <motion.h2
-          className="text-4xl md:text-4xl font-bold mb-8"
+          className="text-4xl md:text-4xl font-bold mb-8 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <span className="neon-text">About</span> Me
+          <span className="neon-text">Linha do</span> Tempo
         </motion.h2>
 
         <div className="relative">

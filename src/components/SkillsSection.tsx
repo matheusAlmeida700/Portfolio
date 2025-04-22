@@ -129,13 +129,13 @@ const SkillsSection = () => {
     >
       <div className="container mx-auto px-4 z-10 relative">
         <motion.h2
-          className="text-4xl md:text-4xl font-bold mb-8 pl-12"
+          className="text-4xl md:text-4xl font-bold mb-8 pl-12 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          Tech <span className="neon-text">Skills</span>
+          Habilidades <span className="neon-text">Técnicas</span>
         </motion.h2>
 
         <div className="flex justify-center mb-12 flex-wrap gap-2">

@@ -97,6 +97,10 @@
     min-height: 100dvh;
     overflow-x: hidden;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 .neon-border {
@@ -173,18 +177,20 @@
 }
 
 .pixel-corners {
-  clip-path: polygon(0 10px,
-      10px 0,
-      calc(100% - 10px) 0,
-      100% 10px,
-      100% calc(100% - 10px),
-      calc(100% - 10px) 100%,
-      10px 100%,
-      0 calc(100% - 10px));
+  clip-path: polygon(
+    0 10px,
+    10px 0,
+    calc(100% - 10px) 0,
+    100% 10px,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    10px 100%,
+    0 calc(100% - 10px)
+  );
 }
 
 .bg-timeline {
-  background-color: #23262B;
+  background-color: #23262b;
 }
 
 @layer utilities {
@@ -250,7 +256,6 @@
 }
 
 @keyframes pulse {
-
   0%,
   100% {
     opacity: 1;

@@ -16,9 +16,11 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { id: "about", title: "About" },
-    { id: "work", title: "Work" },
-    { id: "contact", title: "Contact" },
+    { id: "about", title: "Sobre" },
+    { id: "skills", title: "Habilidades" },
+    { id: "projects", title: "Projetos" },
+    { id: "timeline", title: "Linha do Tempo" },
+    { id: "contact", title: "Contato" },
   ];
 
   return (
@@ -52,7 +54,7 @@ const Navbar = () => {
               key={nav.id}
               className={`${
                 active === nav.title ? "text-white" : "text-white/80"
-              } hover:text-white text-[18px] font-medium cursor-pointer`}
+              } hover:text-white underline-hover font-medium cursor-pointer transition-colors`}
               onClick={() => setActive(nav.title)}
             >
               <a href={`#${nav.id}`}>{nav.title}</a>
@@ -76,9 +78,9 @@ const Navbar = () => {
           <div
             className={`${
               toggle ? "flex" : "hidden"
-            } p-6 black-gradient absolute top-20 right-4 min-w-[140px] z-10 rounded-xl`}
+            }  black-gradient absolute top-15 right-0 min-w-[140px] z-10 rounded-xl`}
           >
-            <ul className="list-none flex flex-col gap-4">
+            <ul className="p-4 list-none flex flex-col gap-4 bg-slate-900/80">
               {navLinks.map((nav) => (
                 <li
                   key={nav.id}

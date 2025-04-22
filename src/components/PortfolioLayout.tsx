@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import ParticleBackground from "./ParticleBackground";
-import FuturisticNav from "./FuturisticNav";
+import FuturisticNav from "./Navbar";
 import { motion } from "framer-motion";
 
 interface PortfolioLayoutProps {
@@ -36,11 +36,11 @@ const PortfolioLayout = ({ children }: PortfolioLayoutProps) => {
 
       <main>{children}</main>
 
-      <footer className="py-6 px-4 border-t border-future-purple/20 text-center text-gray-400 text-sm">
+      <footer className="py-6 px-4 border-t border-white/30 text-center text-gray-300">
         <div className="container mx-auto">
           <p>
-            © {new Date().getFullYear()} • Created with cutting-edge web
-            technologies
+            © {new Date().getFullYear()} • Matheus Almeida - Todos os direitos
+            reservados
           </p>
         </div>
       </footer>
