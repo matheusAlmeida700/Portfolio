@@ -55,7 +55,7 @@ const skillsData = [
   {
     name: "Python",
     level: 85,
-    category: "other",
+    category: "outros",
     color: "#3776AB",
     icon: "🐍",
   },
@@ -90,29 +90,29 @@ const skillsData = [
   {
     name: "Git",
     level: 85,
-    category: "other",
+    category: "outros",
     color: "#F05032",
     icon: "🔧",
   },
   {
     name: "Unity",
     level: 75,
-    category: "other",
+    category: "outros",
     color: "#000000",
     icon: "🎮",
   },
 ];
 
-const categories = ["all", "frontend", "backend", "database", "other"];
+const categories = ["todos", "frontend", "backend", "database", "outros"];
 
 const SkillsSection = () => {
-  const [activeCategory, setActiveCategory] = useState("all");
+  const [activeCategory, setActiveCategory] = useState("todos");
   const [filteredSkills, setFilteredSkills] = useState(skillsData);
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: false, amount: 0.3 });
 
   useEffect(() => {
-    if (activeCategory === "all") {
+    if (activeCategory === "todos") {
       setFilteredSkills(skillsData);
     } else {
       setFilteredSkills(
@@ -142,7 +142,7 @@ const SkillsSection = () => {
           {categories.map((category) => (
             <button
               key={category}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+              className={`px-6 py-2 rounded-full text-md font-medium transition-all duration-300 ${
                 activeCategory === category
                   ? "bg-gradient-to-r from-future-neon to-future-purple text-white"
                   : "bg-future-dark/40 text-gray-400 hover:text-white"

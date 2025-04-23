@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 import CanvasLoader from "../Loader";
@@ -9,7 +9,7 @@ const Computers = ({ isMobile }) => {
     <group dispose={null}>
       <hemisphereLight intensity={0.5} groundColor="black" />
       <directionalLight
-        position={[10, 10, 5]}
+        position={[20, 100, 5]}
         intensity={1.2}
         castShadow
         shadow-mapSize-width={512}

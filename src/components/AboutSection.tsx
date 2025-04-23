@@ -26,30 +26,6 @@ const AboutSection = () => {
           ref={textRef}
           className="relative glassmorphism p-4 rounded-xl overflow-hidden"
         >
-          <style>
-            {`
-                .holo-line {
-                  position: absolute;
-                  left: 0;
-                  width: 100%;
-                  background: linear-gradient(
-                    90deg,
-                    transparent 0%,
-                    rgba(54, 244, 235, 0.05) 15%,
-                    rgba(115, 103, 240, 0.05) 50%,
-                    rgba(54, 244, 235, 0.05) 85%,
-                    transparent 100%
-                  );
-                  animation: moveHorizontal linear infinite;
-                }
-                
-                @keyframes moveHorizontal {
-                  from { transform: translateX(-100%); }
-                  to { transform: translateX(100%); }
-                }
-              `}
-          </style>
-
           <motion.div
             className="relative z-10"
             initial={{ opacity: 0, y: 20 }}

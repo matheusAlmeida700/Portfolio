@@ -180,7 +180,9 @@ const ContactSection = () => {
                 type="submit"
                 className="w-full py-3 px-4 bg-gradient-to-r from-future-neon to-future-purple text-white font-medium rounded-lg hover:from-future-purple hover:to-future-neon cursor-pointer transition-all duration-300 relative overflow-hidden group"
               >
-                <span className="relative z-10">Enviar Mensagem</span>
+                <span className="relative z-10 hover:text-[#915EFF] transition-colors">
+                  Enviar Mensagem
+                </span>
                 <motion.div
                   className="absolute inset-0 -z-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"
                   initial={{ x: "-100%" }}
@@ -217,9 +219,13 @@ const ContactSection = () => {
                     </div>
                     <div>
                       <p className="text-sm text-gray-400">Email</p>
-                      <p className="text-white">
+                      <a
+                        href="http://mailto:matheus.almeida.dev2024@gmail.com"
+                        target="_blank"
+                        className="text-white hover:text-[#915EFF]"
+                      >
                         matheus.almeida.dev2024@gmail.com
-                      </p>
+                      </a>
                     </div>
                   </div>
 
@@ -238,9 +244,15 @@ const ContactSection = () => {
               <div className="mt-12">
                 <p className="text-sm text-gray-400 mb-4">Entre em contato</p>
                 <div className="flex space-x-4">
-                  <SocialButton icon="github" />
-                  <SocialButton icon="linkedin" />
-                  <SocialButton icon="phone" />
+                  <SocialButton
+                    icon="github"
+                    url="https://github.com/matheusAlmeida700"
+                  />
+                  <SocialButton
+                    icon="linkedin"
+                    url="https://www.linkedin.com/in/matheus-almeida-7a697a248/"
+                  />
+                  <SocialButton icon="phone" url="https://wa.me/15981769200" />
                 </div>
               </div>
             </div>
@@ -251,10 +263,12 @@ const ContactSection = () => {
   );
 };
 
-const SocialButton = ({ icon }: { icon: string }) => {
+const SocialButton = ({ icon, url }: { icon: string; url: string }) => {
   return (
     <motion.a
-      href="#"
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
       className="w-10 h-10 rounded-full flex items-center justify-center border-2 border-white hover:bg-white hover:text-black transition-colors duration-300 group"
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}

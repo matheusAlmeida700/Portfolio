@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Loader2, Menu, X } from "lucide-react";
+import Logo from "/logo.png";
 
 const Navbar = () => {
   const [active, setActive] = useState("");
@@ -26,7 +27,7 @@ const Navbar = () => {
   return (
     <nav
       className={`sm:px-16 px-6 w-full flex items-center py-5 fixed top-0 z-20 transition-colors duration-300 ${
-        scrolled ? "bg-slate-900/80" : "bg-transparent"
+        scrolled ? "bg-black/80" : "bg-transparent"
       }`}
     >
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
@@ -38,10 +39,10 @@ const Navbar = () => {
             window.scrollTo(0, 0);
           }}
         >
-          <Loader2 className="w-6 h-6 text-white" />
-          <p className="text-white text-[18px] font-bold cursor-pointer flex gap-1">
+          <img className="w-10 rounded-full" src={Logo} alt="" />
+          <p className="text-[18px] font-bold cursor-pointer flex gap-1 text-white">
             {"<"}Matheus
-            <span className="sm:block hidden">
+            <span className="sm:block hidden text-[#915EFF]">
               {" "}
               | Full Stack Developer {"/>"}
             </span>

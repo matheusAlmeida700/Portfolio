@@ -17,7 +17,7 @@ const timelineItems: TimelineItem[] = [
     date: "2020",
     title: "Início na Programação",
     description:
-      "Primeiro contato com programação por meio do Python. Criei scripts para automatizar tarefas no computador, como envio de e-mails e formulários",
+      "Primeiro contato com programação por meio do Python. Criei scripts para automatizar tarefas no computador, como envio de e-mails e formulários.",
     type: "work",
   },
   {
@@ -25,40 +25,32 @@ const timelineItems: TimelineItem[] = [
     date: "2021 - 2022",
     title: "Desenvolvedor Python e Unity",
     description:
-      "Desenvolvi jogos em C# utilizando a engine Unity, além de scripts para análise de dados e automação com Python",
+      "Desenvolvi jogos em C# utilizando a engine Unity, além de scripts para análise de dados e automação com Python. Nesse período, conquistei certificações reconhecidas em Python e Unity.",
     type: "work",
   },
   {
     id: 3,
     date: "2023",
-    title: "Desenvolvedor Front-end",
+    title: "Transição para o Front-end",
     description:
-      "Curso de especialização focado em padrões de projeto, microserviços e sistemas distribuídos.",
+      "Iniciei minha jornada com desenvolvimento front-end, aprendendo HTML, CSS, JavaScript e frameworks modernos, enquanto continuava atuando com Python e Unity.",
     type: "education",
   },
   {
     id: 4,
-    date: "2018 - 2020",
-    title: "Desenvolvedor Front-end",
+    date: "2024",
+    title: "Especialização Full Stack",
     description:
-      "Desenvolvimento de aplicações web responsivas e escaláveis utilizando React, TypeScript e Node.js. Integração com APIs de terceiros e implementação de fluxos de CI/CD.",
+      "Aprofundei meus conhecimentos em desenvolvimento front-end e me especializei em Full Stack, com foco em back-end, banco de dados e arquitetura de aplicações. Conquistei certificações importantes na área, com destaque para o Certificado de Excelência do SENAI.",
     type: "work",
   },
   {
     id: 5,
-    date: "2018",
-    title: "Bacharelado em Ciência da Computação",
+    date: "2025",
+    title: "Aprofundamento em Full Stack e Tecnologias Avançadas",
     description:
-      "Graduação com foco em desenvolvimento de software, algoritmos e estruturas de dados.",
+      "Estou me aprofundando ainda mais no desenvolvimento Full Stack, estudando novas tecnologias, frameworks modernos e aprimorando minhas habilidades com sistemas complexos e escaláveis.",
     type: "education",
-  },
-  {
-    id: 6,
-    date: "2017",
-    title: "Prêmio de Inovação Tecnológica",
-    description:
-      "Reconhecimento por projeto de aplicativo de acessibilidade desenvolvido durante hackathon universitário.",
-    type: "achievement",
   },
 ];
 
