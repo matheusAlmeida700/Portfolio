@@ -5,6 +5,7 @@
   "homepage": "https://matheusAlmeida700.github.io/Portfolio",
   "type": "module",
   "scripts": {
+    "dev": "vite",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "build": "vite build",
