@@ -1,109 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { technologies } from "../constants/index";
+import { skillsData } from "../constants/index";
 
-const skillsData = [
-  {
-    name: "JavaScript",
-    level: 95,
-    category: "frontend",
-    color: "#F7DF1E",
-    icon: "🟨",
-  },
-  {
-    name: "HTML",
-    level: 95,
-    category: "frontend",
-    color: "#E34F26",
-    icon: "📄",
-  },
-  {
-    name: "CSS",
-    level: 95,
-    category: "frontend",
-    color: "#1572B6",
-    icon: "🎨",
-  },
-  {
-    name: "TailwindCSS",
-    level: 95,
-    category: "frontend",
-    color: "#06B6D4",
-    icon: "🌬️",
-  },
-  {
-    name: "TypeScript",
-    level: 90,
-    category: "frontend",
-    color: "#3178C6",
-    icon: "🌀",
-  },
-  {
-    name: "React",
-    level: 92,
-    category: "frontend",
-    color: "#61DAFB",
-    icon: "⚛️",
-  },
-  {
-    name: "Node.js",
-    level: 88,
-    category: "backend",
-    color: "#339933",
-    icon: "🌱",
-  },
-  {
-    name: "Python",
-    level: 85,
-    category: "outros",
-    color: "#3776AB",
-    icon: "🐍",
-  },
-  {
-    name: "MySQL",
-    level: 80,
-    category: "database",
-    color: "#4479A1",
-    icon: "🐬",
-  },
-  {
-    name: "MongoDB",
-    level: 82,
-    category: "database",
-    color: "#47A248",
-    icon: "🍃",
-  },
-  {
-    name: "Express.js",
-    level: 85,
-    category: "backend",
-    color: "#000000",
-    icon: "🚇",
-  },
-  {
-    name: "Spring Boot",
-    level: 78,
-    category: "backend",
-    color: "#6DB33F",
-    icon: "🌼",
-  },
-  {
-    name: "Git",
-    level: 85,
-    category: "outros",
-    color: "#F05032",
-    icon: "🔧",
-  },
-  {
-    name: "Unity",
-    level: 75,
-    category: "outros",
-    color: "#000000",
-    icon: "🎮",
-  },
-];
-
-const categories = ["todos", "frontend", "backend", "database", "outros"];
+const categories = ["todos", "front-end", "back-end", "database", "outros"];
 
 const SkillsSection = () => {
   const [activeCategory, setActiveCategory] = useState("todos");
@@ -125,7 +25,7 @@ const SkillsSection = () => {
     <section
       id="skills"
       ref={sectionRef}
-      className="min-h-screen py-20 relative"
+      className="min-h-screen py-20 px-6 relative"
     >
       <div className="container mx-auto px-4 z-10 relative">
         <motion.h2
@@ -157,8 +57,8 @@ const SkillsSection = () => {
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
           {filteredSkills.map((skill, index) => (
             <SkillCard
-              key={skill.name}
               skill={skill}
+              key={skill.name}
               index={index}
               isInView={isInView}
             />
@@ -200,7 +100,6 @@ const SkillsSection = () => {
 
 interface Skill {
   name: string;
-  level: number;
   category: string;
   color: string;
   icon: string;
@@ -234,7 +133,7 @@ const SkillCard = ({
           {skill.name}
         </h3>
         <div
-          className="w-24 h-24 rounded-full p-[3px]"
+          className="w-24 h-24 rounded-full p-1"
           style={{
             background: `radial-gradient(circle, ${skill.color}55, transparent)`,
             boxShadow: `0 0 12px ${skill.color}88`,

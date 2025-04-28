@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import ContactGrid from "./canvas/ContactGrid";
 import { Github, Linkedin, Mail, MapPin, PhoneIcon } from "lucide-react";
 
@@ -10,31 +10,11 @@ const ContactSection = () => {
     message: "",
   });
 
-  const [activeInput, setActiveInput] = useState<string | null>(null);
-  const controls = useAnimation();
-
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setFormState((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    controls.start({
-      scale: [1, 0.98, 1],
-      transition: { duration: 0.3 },
-    });
-
-    console.log("Form submitted:", formState);
-
-    setFormState({
-      name: "",
-      email: "",
-      message: "",
-    });
   };
 
   return (
@@ -74,10 +54,10 @@ const ContactSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            animate={controls}
           >
             <form
-              onSubmit={handleSubmit}
+              action="https://formsubmit.co/matheus.almeida.dev2024@gmail.com"
+              method="POST"
               className="glassmorphism rounded-xl p-8"
             >
               <div className="mb-6 relative">
@@ -94,21 +74,10 @@ const ContactSection = () => {
                     name="name"
                     value={formState.name}
                     onChange={handleInputChange}
-                    onFocus={() => setActiveInput("name")}
-                    onBlur={() => setActiveInput(null)}
                     className="w-full bg-gray-500/10 backdrop-blur-sm rounded-lg py-3 px-4 text-white placeholder-gray-400 focus:outline-none focus:ring-1 transition-all duration-300"
                     placeholder="John Doe"
                     required
                   />
-                  {activeInput === "name" && (
-                    <motion.div
-                      className="absolute inset-0 rounded-lg -z-10"
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.95 }}
-                      transition={{ duration: 0.2 }}
-                    />
-                  )}
                 </div>
               </div>
 
@@ -126,21 +95,10 @@ const ContactSection = () => {
                     name="email"
                     value={formState.email}
                     onChange={handleInputChange}
-                    onFocus={() => setActiveInput("email")}
-                    onBlur={() => setActiveInput(null)}
                     className="w-full bg-gray-500/10 backdrop-blur-sm rounded-lg py-3 px-4 text-white placeholder-gray-400 focus:outline-none focus:ring-1 transition-all duration-300"
                     placeholder="john.doe@example.com"
                     required
                   />
-                  {activeInput === "email" && (
-                    <motion.div
-                      className="absolute inset-0 rounded-lg border border-future-neon -z-10"
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.95 }}
-                      transition={{ duration: 0.2 }}
-                    />
-                  )}
                 </div>
               </div>
 
@@ -157,22 +115,11 @@ const ContactSection = () => {
                     name="message"
                     value={formState.message}
                     onChange={handleInputChange}
-                    onFocus={() => setActiveInput("message")}
-                    onBlur={() => setActiveInput(null)}
                     rows={5}
                     className="w-full bg-gray-500/10 backdrop-blur-sm rounded-lg py-3 px-4 text-white placeholder-gray-400 focus:outline-none focus:ring-1 transition-all duration-300 resize-none"
                     placeholder="Me conte sobre seu projeto..."
                     required
                   />
-                  {activeInput === "message" && (
-                    <motion.div
-                      className="absolute inset-0 rounded-lg border border-future-neon -z-10"
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.95 }}
-                      transition={{ duration: 0.2 }}
-                    />
-                  )}
                 </div>
               </div>
 
@@ -220,9 +167,8 @@ const ContactSection = () => {
                     <div>
                       <p className="text-sm text-gray-400">Email</p>
                       <a
-                        href="http://mailto:matheus.almeida.dev2024@gmail.com"
-                        target="_blank"
-                        className="text-white hover:text-[#915EFF]"
+                        href="mailto:matheus.almeida.dev2024@gmail.com"
+                        className="text-white hover:text-[#915EFF] transition-colors"
                       >
                         matheus.almeida.dev2024@gmail.com
                       </a>

@@ -75,7 +75,12 @@ const ParticlesCanvas = () => {
     };
   }, []);
 
-  return <div ref={containerRef} className="absolute right-0 top-20" />;
+  return (
+    <div
+      ref={containerRef}
+      className="hidden md:block absolute right-0 top-20"
+    />
+  );
 };
 
 export default ParticlesCanvas;

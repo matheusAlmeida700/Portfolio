@@ -9,7 +9,7 @@ const AboutSection = () => {
     <section
       id="about"
       ref={sectionRef}
-      className="min-h-screen flex items-center justify-center py-20 relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center py-20 px-6 relative overflow-hidden"
     >
       <div className="max-w-4xl mx-auto">
         <motion.h2
@@ -49,7 +49,7 @@ const AboutSection = () => {
               intuitivas e acessíveis aos usuários.
             </p>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 md:mt-12">
               <Stat value="4+" label="Anos de Experiência" />
               <Stat value="30+" label="Projetos Finalizados" />
               <Stat value="10+" label="Tecnologias" />

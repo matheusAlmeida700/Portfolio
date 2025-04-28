@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import ComputersCanvas from "./canvas/Computer";
@@ -13,7 +12,7 @@ const HeroSection = () => {
           <div className="w-1 sm:h-60 h-40 bg-gradient-to-b from-purple-700 to-purple-600/10" />
         </div>
         <div>
-          <h3 className="font-black lg:text-[30px] sm:text-[20px] xs:text-[10px] text-[10px] lg:leading-[58px] text-white">
+          <h3 className="font-black text-[20px] md:text-4xl lg:leading-[58px] text-white">
             <span className="text-[#915EFF]">
               <TypeAnimation
                 sequence={[
@@ -45,7 +44,7 @@ const HeroSection = () => {
       <ParticlesCanvas />
       <ComputersCanvas />
 
-      <div className="absolute bottom-20 left-20">
+      <div className="absolute bottom-6 left-6 md:bottom-20 md:left-20">
         <a href="#about">
           <div className="w-[35px] h-[64px] rounded-3xl border-3 border-white/90 flex justify-center items-start p-2">
             <motion.div

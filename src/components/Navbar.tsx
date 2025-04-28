@@ -1,12 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { Loader2, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Logo from "/logo.png";
+import BackgroundMusic from "../assets/audio/lofi-streets.mp3";
+import { navLinks } from "@/constants";
 
 const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,13 +20,15 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { id: "about", title: "Sobre" },
-    { id: "skills", title: "Habilidades" },
-    { id: "projects", title: "Projetos" },
-    { id: "timeline", title: "Linha do Tempo" },
-    { id: "contact", title: "Contato" },
-  ];
+  const toggleMusic = () => {
+    if (!audioRef.current) return;
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
 
   return (
     <nav
@@ -41,15 +47,14 @@ const Navbar = () => {
         >
           <img className="w-10 rounded-full" src={Logo} alt="" />
           <p className="text-[18px] font-bold cursor-pointer flex gap-1 text-white">
-            {"<"}Matheus
+            Matheus
             <span className="sm:block hidden text-[#915EFF]">
-              {" "}
-              | Full Stack Developer {"/>"}
+              | Full-Stack Developer
             </span>
           </p>
         </Link>
 
-        <ul className="list-none hidden sm:flex flex-row gap-10">
+        <ul className="list-none hidden sm:flex flex-row gap-10 items-center">
           {navLinks.map((nav) => (
             <li
               key={nav.id}
@@ -61,6 +66,36 @@ const Navbar = () => {
               <a href={`#${nav.id}`}>{nav.title}</a>
             </li>
           ))}
+
+          <button
+            onClick={toggleMusic}
+            className="relative flex justify-center items-center w-11 h-11 rounded-full border-2 border-white opacity-80 hover:opacity-100 transition-opacity"
+          >
+            <div className="flex items-center gap-1">
+              <div
+                className={`w-1 h-4.5 bg-white rounded-lg transform transition-all ${
+                  isPlaying ? "animate-equalizer1" : ""
+                }`}
+              ></div>
+              <div
+                className={`w-1 h-3 bg-white rounded-lg transform transition-all ${
+                  isPlaying ? "animate-equalizer2" : ""
+                }`}
+              ></div>
+              <div
+                className={`w-1 h-4.5 bg-white rounded-lg transform transition-all ${
+                  isPlaying ? "animate-equalizer3" : ""
+                }`}
+              ></div>
+              <div
+                className={`w-1 h-3 bg-white rounded-lg transform transition-all ${
+                  isPlaying ? "animate-equalizer4" : ""
+                }`}
+              ></div>
+            </div>
+          </button>
+
+          <audio ref={audioRef} src={BackgroundMusic} loop preload="auto" />
         </ul>
 
         <div className="sm:hidden flex justify-end items-center">
@@ -76,12 +111,40 @@ const Navbar = () => {
             />
           )}
 
+          <button
+            onClick={toggleMusic}
+            className="relative flex justify-center items-center w-11 h-11 ml-4 rounded-full border-2 border-white opacity-80 hover:opacity-100 transition-opacity"
+          >
+            <div className="flex items-center gap-1">
+              <div
+                className={`w-1 h-4.5 bg-white rounded-lg transform transition-all ${
+                  isPlaying ? "animate-equalizer1" : ""
+                }`}
+              ></div>
+              <div
+                className={`w-1 h-3 bg-white rounded-lg transform transition-all ${
+                  isPlaying ? "animate-equalizer2" : ""
+                }`}
+              ></div>
+              <div
+                className={`w-1 h-4.5 bg-white rounded-lg transform transition-all ${
+                  isPlaying ? "animate-equalizer3" : ""
+                }`}
+              ></div>
+              <div
+                className={`w-1 h-3 bg-white rounded-lg transform transition-all ${
+                  isPlaying ? "animate-equalizer4" : ""
+                }`}
+              ></div>
+            </div>
+          </button>
+
           <div
             className={`${
               toggle ? "flex" : "hidden"
-            }  black-gradient absolute top-15 right-0 min-w-[140px] z-10 rounded-xl`}
+            }  black-gradient absolute top-20 right-0 min-w-[140px] z-10 rounded-xl`}
           >
-            <ul className="p-4 list-none flex flex-col gap-4 bg-slate-900/80">
+            <ul className="p-4 list-none flex flex-col gap-4 bg-black/80">
               {navLinks.map((nav) => (
                 <li
                   key={nav.id}
