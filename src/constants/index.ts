@@ -82,7 +82,7 @@ export const projectsData = [
     title: "Protex Expert Cleaning",
     description:
       "Sistema completo para gerenciamento de clientes e colaboradores de uma empresa de limpeza profissional.",
-    image: "/projects/protex.png",
+    image: "/Portfolio/projects/protex.png",
     tags: ["React", "Vite", "Express.js", "MongoDB"],
     demoUrl: "https://github.com/matheusAlmeida700/Protex-Cleaning-Back",
     githubUrl: "https://github.com/matheusAlmeida700/Protex-Cleaning-Back",
@@ -93,7 +93,7 @@ export const projectsData = [
     title: "BioVerse",
     description:
       "Plataforma interativa para o ensino de Biologia, com quizzes e conteúdo visual dinâmico.",
-    image: "/projects/bioverse.png",
+    image: "/Portfolio/projects/bioverse.png",
     tags: ["React", "TypeScript", "Vite", "TailwindCSS"],
     demoUrl: "https://bioverseapp.netlify.app/",
     githubUrl: "https://bioverseapp.netlify.app/",
@@ -104,7 +104,7 @@ export const projectsData = [
     title: "Pet-Mania",
     description:
       "Site institucional para petshop, com foco em identidade visual e usabilidade.",
-    image: "/projects/petshop.png",
+    image: "/Portfolio/projects/petshop.png",
     tags: ["React", "TypeScript", "Vite", "TailwindCSS"],
     demoUrl: "https://pet-mania.netlify.app/",
     githubUrl: "https://github.com/matheusAlmeida700/Pet-Mania-Website",
@@ -115,7 +115,7 @@ export const projectsData = [
     title: "Engineering",
     description:
       "Website institucional para empresa de engenharia, destacando serviços e portfólio.",
-    image: "/projects/engineering.png",
+    image: "/Portfolio/projects/engineering.png",
     tags: ["React", "TypeScript", "TailwindCSS"],
     demoUrl: "https://auto-engineering.netlify.app/",
     githubUrl: "https://github.com/matheusAlmeida700/Engineering",
@@ -126,7 +126,7 @@ export const projectsData = [
     title: "Pack-Go",
     description:
       "Site profissional para transportadora, com foco em apresentação de serviços e contato rápido.",
-    image: "/projects/pack-go.png",
+    image: "/Portfolio/projects/pack-go.png",
     tags: ["React", "TypeScript", "Vite", "TailwindCSS"],
     demoUrl: "https://pack-go-auto.netlify.app/",
     githubUrl: "https://github.com/matheusAlmeida700/Pack-Go",
@@ -137,7 +137,7 @@ export const projectsData = [
     title: "Anime-Hub",
     description:
       "Dashboard para descobrir, acompanhar e favoritar animes com facilidade.",
-    image: "/projects/anime-hub.png",
+    image: "/Portfolio/projects/anime-hub.png",
     tags: ["React", "Vite", "TailwindCSS"],
     demoUrl: "https://animhub.netlify.app/top",
     githubUrl: "https://github.com/matheusAlmeida700/Anime-Hub-React",
@@ -148,7 +148,7 @@ export const projectsData = [
     title: "Movie-Hub",
     description:
       "Aplicação para explorar, buscar e salvar filmes favoritos com visual atraente.",
-    image: "/projects/movie-hub.png",
+    image: "/Portfolio/projects/movie-hub.png",
     tags: ["React", "Vite", "TailwindCSS"],
     demoUrl: "https://github.com/matheusAlmeida700/Movie-Hub-React",
     githubUrl: "https://github.com/matheusAlmeida700/Movie-Hub-React",
@@ -159,7 +159,7 @@ export const projectsData = [
     title: "To-Do List",
     description:
       "Lista de tarefas intuitiva com recursos de adição, edição e conclusão de atividades.",
-    image: "/projects/todolist.png",
+    image: "/Portfolio/projects/todolist.png",
     tags: ["HTML", "CSS", "JavaScript", "Sass"],
     demoUrl: "https://matheusalmeida700.github.io/To-Do-List/",
     githubUrl: "https://github.com/matheusAlmeida700/To-Do-List",
