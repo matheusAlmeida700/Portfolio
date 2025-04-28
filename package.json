@@ -2,7 +2,7 @@
   "name": "portfolio",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://matheusAlmeida700.github.io/Portfolio",
+  "homepage": "https://matheusAlmeida700.github.io/Portfolio-Dev",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
