@@ -4,6 +4,7 @@ import path from "path";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
+  base: "/Portfolio/",
   server: {
     host: "::",
     port: 8080,
