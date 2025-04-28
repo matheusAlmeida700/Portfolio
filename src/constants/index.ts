@@ -262,11 +262,11 @@ export const skillsData = [
 ];
 
 export const navLinks = [
-  { id: "about", title: "Sobre" },
-  { id: "skills", title: "Habilidades" },
-  { id: "projects", title: "Projetos" },
-  { id: "timeline", title: "Linha do Tempo" },
-  { id: "contact", title: "Contato" },
+  { id: "about", title: "Sobre", href: "/repo-name/#about" },
+  { id: "skills", title: "Habilidades", href: "/repo-name/#skills" },
+  { id: "projects", title: "Projetos", href: "/repo-name/#projects" },
+  { id: "timeline", title: "Linha do Tempo", href: "/repo-name/#timeline" },
+  { id: "contact", title: "Contato", href: "/repo-name/#contact" },
 ];
 
 export type TimelineItem = {
